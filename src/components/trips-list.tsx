@@ -1,3 +1,8 @@
 import React from 'react'
+import { styled } from 'linaria/react'
 
-export const TripsList: React.FC = () => <div>Trips list</div>
+const Root = styled.ul`
+  width: 200px;
+`
+
+export const TripsList: React.FC = () => <Root>Trips list</Root>
