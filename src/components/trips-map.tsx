@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { css } from 'linaria'
 import { TripItem, TripsData, LngLat } from 'src/types'
-import ReactMapboxGl from 'react-mapbox-gl'
+import ReactMapboxGl, { Layer, Feature, Popup } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -19,36 +19,69 @@ interface TripsMapProps {
   currentTripId: string | null
 }
 
+const calcMapBounds = (trips: TripsData) => {
+  const tripsArray = Object.values(trips)
+
+  const [firstTrip, ...otherTrips] = tripsArray
+
+  return otherTrips.reduce<[LngLat, LngLat]>(
+    (
+      [[smallestLng, smallestLat], [biggestLng, biggestLat]],
+      {
+        startStationLongitude,
+        startStationLatitude,
+        endStationLongitude,
+        endStationLatitude
+      }
+    ) => {
+      console.log(startStationLatitude, endStationLatitude)
+      return [
+        [
+          Math.min(startStationLongitude, endStationLongitude, smallestLng),
+          Math.min(startStationLatitude, endStationLatitude, smallestLat)
+        ],
+        [
+          Math.max(startStationLongitude, endStationLongitude, biggestLng),
+          Math.max(startStationLatitude, endStationLatitude, biggestLat)
+        ]
+      ]
+    },
+    [
+      [firstTrip.startStationLongitude, firstTrip.startStationLatitude],
+      [firstTrip.endStationLongitude, firstTrip.endStationLatitude]
+    ]
+  )
+}
+
 export const TripsMap: React.FC<TripsMapProps> = ({
   center,
   trips,
   currentTripId
 }) => {
-  const fitBounds = useMemo<[LngLat, LngLat] | undefined>(() => {
-    if (currentTripId === null || !trips[currentTripId]) return undefined
+  const fitBounds = useMemo<[LngLat, LngLat]>(() => {
+    return calcMapBounds(trips)
+  }, [trips])
 
-    const selectedTrip = trips[currentTripId]
-
-    const {
-      startStationLongitude,
-      startStationLatitude,
-      endStationLongitude,
-      endStationLatitude
-    } = selectedTrip
-
-    return [
-      [startStationLongitude, startStationLatitude],
-      [endStationLongitude, endStationLatitude]
-    ]
-  }, [trips, currentTripId])
+  console.log(fitBounds)
 
   return (
     <Map
       onDragEnd={console.log}
-      center={center}
       className={mapStyles}
       fitBounds={fitBounds as [LngLat, LngLat]}
       style="mapbox://styles/mapbox/streets-v8" // eslint-disable-line react/style-prop-object
-    />
+    >
+      <Layer type="symbol" id="marker">
+        {Object.entries(trips).map(([tripId, trip]) => (
+          <Feature
+            key={tripId}
+            coordinates={[
+              trip.startStationLatitude,
+              trip.startStationLongitude
+            ]}
+          />
+        ))}
+      </Layer>
+    </Map>
   )
 }

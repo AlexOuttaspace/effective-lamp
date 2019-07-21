@@ -8,18 +8,16 @@ import camelcaseKeys from 'camelcase-keys'
 import rawData from './trips-data.json'
 
 const tripsData: TripsData = rawData.reduce((acc, trip) => {
-  const camelizedTripObj: TripItem = (camelcaseKeys(
-    trip
-  ) as unknown) as TripItem
   return {
     ...acc,
-    [uuid()]: camelizedTripObj
+    [uuid()]: (camelcaseKeys(trip) as unknown) as TripItem
   }
 }, {})
 
 export const App: React.FC = () => {
   const [center, setCenter] = useState<LngLat>([-0.2416815, 51.5285582])
   const [currentTripId, setCurrentTripId] = useState<string | null>(null)
+  console.log(currentTripId && tripsData[currentTripId])
   return (
     <Fragment>
       <button onClick={() => setCurrentTripId(Object.keys(tripsData)[0])}>
@@ -33,7 +31,13 @@ export const App: React.FC = () => {
             center={center}
           />
         }
-        listElement={<TripsList />}
+        listElement={
+          <TripsList
+            onSelectTrip={setCurrentTripId}
+            trips={tripsData}
+            currentTripId={currentTripId}
+          />
+        }
       />
     </Fragment>
   )
