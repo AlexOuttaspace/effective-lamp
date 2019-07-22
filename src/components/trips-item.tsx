@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { styled } from 'linaria/react'
 import { TripItem } from 'src/types'
-import { format, getTime, startOfToday } from 'date-fns'
+import { format } from 'date-fns'
 import { ArrowIcon } from 'src/ui'
 
 const formatInteger = (int: number): string =>
@@ -26,6 +26,7 @@ const StationWrapper = styled.div<{ isEnd?: boolean; isSelected: boolean }>`
   padding: 0.5rem;
   border: 2px solid var(--main-color);
   border-radius: 1rem;
+  transition: box-shadow 0.3s ease-out;
   box-shadow: 0 0 12px 2px
     ${(p) => (p.isSelected ? 'var(--main-color)' : 'none')};
 `
