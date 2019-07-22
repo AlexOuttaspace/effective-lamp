@@ -30,7 +30,7 @@ const MarkerInner = styled.div<{
 }>`
   --marker-color: ${(p) =>
     p.isEnd ? 'var(--destination-color)' : 'var(--departure-color)'};
-  --marker-size: ${(p) => p.sizeMultiplier * 0.005};
+  --marker-size: ${(p) => p.sizeMultiplier * 0.001 + 1};
 
   border-radius: 50%;
   position: relative;
@@ -66,7 +66,7 @@ export const TripsMap: React.FC<TripsMapProps> = ({ trips, currentTripId }) => {
       className={mapStyles}
       fitBounds={fitBounds}
       fitBoundsOptions={fitBoundsOptions}
-      style="mapbox://styles/mapbox/streets-v8" // eslint-disable-line react/style-prop-object
+      style="mapbox://styles/alexouttaspace/cjydo73es0wqf1co2xs5ly8z7" // eslint-disable-line react/style-prop-object
     >
       <Fragment>
         {Object.entries(trips).map(([tripId, trip]) => {

@@ -7,6 +7,7 @@ import camelcaseKeys from 'camelcase-keys'
 
 import rawData from './trips-data.json'
 
+// if this array gets big, we can always switch to using Map
 const tripsData: TripsData = rawData.reduce((acc, trip) => {
   return {
     ...acc,
