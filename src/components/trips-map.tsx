@@ -30,7 +30,7 @@ const MarkerInner = styled.div<{
 }>`
   --marker-color: ${(p) =>
     p.isEnd ? 'var(--destination-color)' : 'var(--departure-color)'};
-  --marker-size: ${(p) => p.sizeMultiplier * 0.001 + 1};
+  --marker-size: ${(p) => Math.log10(p.sizeMultiplier + 2)};
 
   border-radius: 50%;
   position: relative;

@@ -22,6 +22,7 @@ const StationWrapper = styled.div<{ isEnd?: boolean; isSelected: boolean }>`
     p.isEnd ? 'var(--destination-color)' : 'var(--departure-color)'};
 
   flex-shrink: 0;
+  flex-grow: 1;
   flex-basis: 14rem;
   width: 14rem;
   padding: 0.5rem;
