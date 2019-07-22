@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/effective-lamp/static/css/main.9fffc6ea.chunk.css",
+    "main.js": "/effective-lamp/static/js/main.460c6588.chunk.js",
+    "main.js.map": "/effective-lamp/static/js/main.460c6588.chunk.js.map",
+    "runtime~main.js": "/effective-lamp/static/js/runtime~main.702854eb.js",
+    "runtime~main.js.map": "/effective-lamp/static/js/runtime~main.702854eb.js.map",
+    "static/css/2.a5761821.chunk.css": "/effective-lamp/static/css/2.a5761821.chunk.css",
+    "static/js/2.1a1bc229.chunk.js": "/effective-lamp/static/js/2.1a1bc229.chunk.js",
+    "static/js/2.1a1bc229.chunk.js.map": "/effective-lamp/static/js/2.1a1bc229.chunk.js.map",
+    "index.html": "/effective-lamp/index.html",
+    "precache-manifest.249fabee2a638b58e8ccb126c6357eea.js": "/effective-lamp/precache-manifest.249fabee2a638b58e8ccb126c6357eea.js",
+    "service-worker.js": "/effective-lamp/service-worker.js",
+    "static/css/2.a5761821.chunk.css.map": "/effective-lamp/static/css/2.a5761821.chunk.css.map",
+    "static/css/main.9fffc6ea.chunk.css.map": "/effective-lamp/static/css/main.9fffc6ea.chunk.css.map"
+  }
+}
