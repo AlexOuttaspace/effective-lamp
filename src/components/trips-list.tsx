@@ -7,6 +7,21 @@ import { TripsItem } from './trips-item'
 const Root = styled.ul`
   padding-left: 1rem;
   padding-right: 1rem;
+  height: 100%;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f7f5fa;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #eddbfb;
+    outline: 1px solid #eddbfb;
+  }
 `
 
 interface TripsListProps {

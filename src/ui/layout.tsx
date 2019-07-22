@@ -13,7 +13,6 @@ const MapContainer = styled.div`
 
 const ListContainer = styled.div`
   flex-shrink: 0;
-  overflow-y: auto;
 `
 
 interface LayoutProps {

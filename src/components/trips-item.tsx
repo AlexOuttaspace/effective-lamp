@@ -27,7 +27,7 @@ const StationWrapper = styled.div<{ isEnd?: boolean; isSelected: boolean }>`
   width: 14rem;
   padding: 0.5rem;
   border: 2px solid var(--border-color);
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   transition: box-shadow 0.3s ease-out;
   box-shadow: 0 0 12px 2px
     ${(p) => (p.isSelected ? 'var(--border-color)' : 'none')};
