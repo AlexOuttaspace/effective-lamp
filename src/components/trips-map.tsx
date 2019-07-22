@@ -2,7 +2,7 @@ import React, { useMemo, Fragment } from 'react'
 import { css } from 'linaria'
 import { styled } from 'linaria/react'
 import { TripItem, TripsData, LngLat } from 'src/types'
-import ReactMapboxGl, { Layer, Feature, Marker, Popup } from 'react-mapbox-gl'
+import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
   accessToken:

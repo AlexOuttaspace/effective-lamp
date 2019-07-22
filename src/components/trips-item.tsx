@@ -18,17 +18,18 @@ const formatDuration = (duration: number): string => {
 const DATE_FORMAT = 'YYYY.MM.DD HH:mm'
 
 const StationWrapper = styled.div<{ isEnd?: boolean; isSelected: boolean }>`
-  --main-color: ${(p) => (p.isEnd ? '#ff9a00' : '#27a7d8')};
+  --border-color: ${(p) =>
+    p.isEnd ? 'var(--destination-color)' : 'var(--departure-color)'};
 
   flex-shrink: 0;
   flex-basis: 14rem;
   width: 14rem;
   padding: 0.5rem;
-  border: 2px solid var(--main-color);
+  border: 2px solid var(--border-color);
   border-radius: 1rem;
   transition: box-shadow 0.3s ease-out;
   box-shadow: 0 0 12px 2px
-    ${(p) => (p.isSelected ? 'var(--main-color)' : 'none')};
+    ${(p) => (p.isSelected ? 'var(--border-color)' : 'none')};
 `
 
 const Center = styled.div`
