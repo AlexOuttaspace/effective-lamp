@@ -23,8 +23,8 @@ const StationWrapper = styled.div<{ isEnd?: boolean; isSelected: boolean }>`
 
   flex-shrink: 0;
   flex-grow: 1;
-  flex-basis: 14rem;
-  width: 14rem;
+
+  width: 12rem;
   padding: 0.5rem;
   border: 2px solid var(--border-color);
   border-radius: 0.8rem;
@@ -41,6 +41,10 @@ const Center = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  svg {
+    fill: #844da3;
+  }
 `
 
 const StationName = styled.h2`
@@ -52,7 +56,7 @@ const StationName = styled.h2`
 `
 
 const Duration = styled.time`
-  font-size: 0.9rem;
+  font-size: 1rem;
 `
 
 const Root = styled.li`
@@ -61,6 +65,7 @@ const Root = styled.li`
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  color: #545454;
 `
 
 interface TripItemProps extends TripItem {
