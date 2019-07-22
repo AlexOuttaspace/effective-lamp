@@ -1,7 +1,12 @@
 import React, { useMemo, Fragment } from 'react'
 import { css } from 'linaria'
 import { styled } from 'linaria/react'
-import { TripItem, TripsData, LngLat } from 'src/types'
+import { TripsData, LngLat } from 'src/types'
+import {
+  getTripStartCoords,
+  getTripEndCoords,
+  calcMapBounds
+} from 'src/helpers'
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
@@ -14,54 +19,30 @@ const mapStyles = css`
   width: 100%;
 `
 
-const getTripStartCoords = ({
-  startStationLongitude,
-  startStationLatitude
-}: TripItem): LngLat => [startStationLongitude, startStationLatitude]
+const StationName = styled.h2`
+  font-size: 1.3rem;
+`
 
-const getTripEndCoords = ({
-  endStationLongitude,
-  endStationLatitude
-}: TripItem): LngLat => [endStationLongitude, endStationLatitude]
+const MarkerInner = styled.div<{
+  isSelected: boolean
+  isEnd?: boolean
+  sizeMultiplier: number
+}>`
+  --marker-color: ${(p) =>
+    p.isEnd ? 'var(--destination-color)' : 'var(--departure-color)'};
+  --marker-size: ${(p) => p.sizeMultiplier * 0.005};
 
-const calcMapBounds = (trips: TripsData) => {
-  const tripsArray = Object.values(trips)
-
-  const [firstTrip, ...otherTrips] = tripsArray
-
-  return otherTrips.reduce<[LngLat, LngLat]>(
-    (
-      [[smallestLng, smallestLat], [biggestLng, biggestLat]],
-      {
-        startStationLongitude,
-        startStationLatitude,
-        endStationLongitude,
-        endStationLatitude
-      }
-    ) => [
-      [
-        Math.min(startStationLongitude, endStationLongitude, smallestLng),
-        Math.min(startStationLatitude, endStationLatitude, smallestLat)
-      ],
-      [
-        Math.max(startStationLongitude, endStationLongitude, biggestLng),
-        Math.max(startStationLatitude, endStationLatitude, biggestLat)
-      ]
-    ],
-    [getTripStartCoords(firstTrip), getTripEndCoords(firstTrip)]
-  )
-}
-
-const MarkerInner = styled.div<{ isSelected: boolean }>`
   border-radius: 50%;
   position: relative;
   height: 1rem;
   width: 1rem;
-  background-color: ${(p) => (p.isSelected ? 'blue' : 'red')};
+  background-color: ${(p) => (p.isSelected ? 'var(--marker-color)' : '#ccc')};
   z-index: ${(p) => (p.isSelected ? 1 : 0)};
   box-shadow: 0 0 1px blue;
-  transition: transform 0.2s ease-in-out;
-  transform: ${(p) => (p.isSelected ? 'scale(1.5)' : 'none')};
+  transition: ${(p) => (p.isSelected ? 'all 0.3s ease-out' : 'none')};
+  transform: ${(p) => (p.isSelected ? 'scale(var(--marker-size))' : 'none')};
+  box-shadow: 0 0 12px 2px
+    ${(p) => (p.isSelected ? 'var(--marker-color)' : 'none')};
 `
 
 interface TripsMapProps {
@@ -96,18 +77,27 @@ export const TripsMap: React.FC<TripsMapProps> = ({ trips, currentTripId }) => {
           return (
             <Fragment key={tripId}>
               <Marker
-                anchor="top"
+                anchor="center"
                 style={{ zIndex: isSelected ? 1 : 0 }}
                 coordinates={startStationCoords}
               >
-                <MarkerInner isSelected={isSelected} />
+                <MarkerInner
+                  sizeMultiplier={trip.tripduration}
+                  isSelected={isSelected}
+                />
               </Marker>
               <Marker
-                anchor="top"
-                style={{ zIndex: isSelected ? 1 : 0 }}
+                anchor="center"
+                style={{
+                  zIndex: isSelected ? 1 : 0
+                }}
                 coordinates={endStationCoords}
               >
-                <MarkerInner isSelected={isSelected} />
+                <MarkerInner
+                  sizeMultiplier={trip.tripduration}
+                  isSelected={isSelected}
+                  isEnd
+                />
               </Marker>
             </Fragment>
           )
@@ -115,10 +105,11 @@ export const TripsMap: React.FC<TripsMapProps> = ({ trips, currentTripId }) => {
         {currentTrip && (
           <Fragment>
             <Popup coordinates={getTripStartCoords(currentTrip)}>
-              <div>123</div>
+              <StationName>{currentTrip.startStationName}</StationName>
             </Popup>
+
             <Popup coordinates={getTripEndCoords(currentTrip)}>
-              <div>123</div>
+              <StationName>{currentTrip.endStationName}</StationName>
             </Popup>
           </Fragment>
         )}

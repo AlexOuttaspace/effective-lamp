@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { TripsList, TripsMap } from 'src/components'
 import { Layout } from 'src/ui'
-import { TripItem, TripsData, LngLat } from 'src/types'
+import { TripItem, TripsData } from 'src/types'
 import { v4 as uuid } from 'uuid'
 import camelcaseKeys from 'camelcase-keys'
 
