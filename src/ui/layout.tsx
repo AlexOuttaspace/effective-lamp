@@ -8,7 +8,7 @@ const Root = styled.div`
 
 const MapContainer = styled.div`
   flex-grow: 1;
-  flex-shrink: 0;
+  flex-shrink: 1;
 `
 
 const ListContainer = styled.div`

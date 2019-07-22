@@ -15,21 +15,13 @@ const tripsData: TripsData = rawData.reduce((acc, trip) => {
 }, {})
 
 export const App: React.FC = () => {
-  const [center, setCenter] = useState<LngLat>([-0.2416815, 51.5285582])
   const [currentTripId, setCurrentTripId] = useState<string | null>(null)
-  console.log(currentTripId && tripsData[currentTripId])
+
   return (
     <Fragment>
-      <button onClick={() => setCurrentTripId(Object.keys(tripsData)[0])}>
-        123
-      </button>
       <Layout
         mapElement={
-          <TripsMap
-            currentTripId={currentTripId}
-            trips={tripsData}
-            center={center}
-          />
+          <TripsMap currentTripId={currentTripId} trips={tripsData} />
         }
         listElement={
           <TripsList
