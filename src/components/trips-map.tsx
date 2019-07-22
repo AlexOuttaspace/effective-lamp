@@ -102,6 +102,7 @@ export const TripsMap: React.FC<TripsMapProps> = ({ trips, currentTripId }) => {
             </Fragment>
           )
         })}
+
         {currentTrip && (
           <Fragment>
             <Popup coordinates={getTripStartCoords(currentTrip)}>

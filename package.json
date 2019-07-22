@@ -2,6 +2,7 @@
   "name": "maps",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alexouttaspace.github.io/effective-lamp/",
   "dependencies": {
     "camelcase-keys": "^6.0.0",
     "date-fns": "^1.30.1",
@@ -17,7 +18,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^5.2.4",
     "@types/date-fns": "^2.6.0",
     "@types/jest": "24.0.15",
     "@types/mapbox-gl": "^0.51.11",
@@ -42,10 +46,10 @@
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "core-js": "^2.6.5",
-    "@craco/craco": "^5.2.4",
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-prettier": "^3.1.0",
+    "gh-pages": "^2.0.1",
     "prettier": "^1.18.2",
     "react-scripts": "3.0.1",
     "typescript": "3.5.3"
