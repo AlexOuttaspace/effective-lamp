@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { styled } from 'linaria/react'
 import { TripItem } from 'src/types'
 import { format } from 'date-fns'
@@ -89,10 +89,18 @@ export const TripsItem: React.FC<TripItemProps> = ({
     onSelectTrip
   ])
 
+  const rootRef = useRef<HTMLLIElement>(null)
+  const handleSelectTripOnHover = useCallback(() => {
+    onSelectTrip(id)
+
+    if (rootRef.current !== null) rootRef.current.focus()
+  }, [id, onSelectTrip])
+
   return (
     <Root
       tabIndex={0}
-      onMouseOver={handleSelectTrip}
+      ref={rootRef}
+      onMouseEnter={handleSelectTripOnHover}
       onFocus={handleSelectTrip}
     >
       <StationWrapper isSelected={isSelected}>
