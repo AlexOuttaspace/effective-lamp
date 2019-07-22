@@ -91,7 +91,7 @@ export const TripsItem: React.FC<TripItemProps> = ({
 
   return (
     <Root
-      tabIndex={1}
+      tabIndex={0}
       onMouseOver={handleSelectTrip}
       onFocus={handleSelectTrip}
     >
