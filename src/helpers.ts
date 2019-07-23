@@ -13,6 +13,8 @@ export const getTripEndCoords = ({
 export const calcMapBounds = (trips: TripsData) => {
   const tripsArray = Object.values(trips)
 
+  if (tripsArray.length === 0) return
+
   const [firstTrip, ...otherTrips] = tripsArray
 
   return otherTrips.reduce<[LngLat, LngLat]>(

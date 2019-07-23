@@ -55,9 +55,10 @@ const fitBoundsOptions = {
 }
 
 export const TripsMap: React.FC<TripsMapProps> = ({ trips, currentTripId }) => {
-  const fitBounds = useMemo<[LngLat, LngLat]>(() => calcMapBounds(trips), [
-    trips
-  ])
+  const fitBounds = useMemo<[LngLat, LngLat] | undefined>(
+    () => calcMapBounds(trips),
+    [trips]
+  )
 
   const currentTrip = currentTripId && trips[currentTripId]
 
