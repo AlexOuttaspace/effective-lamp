@@ -49,6 +49,7 @@ const Center = styled.div`
 
 const StationName = styled.h2`
   font-size: 1.4rem;
+  line-height: normal;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
