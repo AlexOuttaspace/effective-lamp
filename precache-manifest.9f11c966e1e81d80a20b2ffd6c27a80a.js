@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f1a2e66b7e6ae5e61b8bcb20c5f15bae",
+    "revision": "0a2b50876699d5adf6b041d99d558d43",
     "url": "/effective-lamp/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effective-lamp/static/css/2.a5761821.chunk.css"
   },
   {
-    "revision": "5757eb7fbde81cb4aee2",
-    "url": "/effective-lamp/static/css/main.70cd20ec.chunk.css"
+    "revision": "20ad21423cf2388593af",
+    "url": "/effective-lamp/static/css/main.880f8080.chunk.css"
   },
   {
     "revision": "0ed22a99dad9e789ea28",
     "url": "/effective-lamp/static/js/2.1a1bc229.chunk.js"
   },
   {
-    "revision": "5757eb7fbde81cb4aee2",
+    "revision": "20ad21423cf2388593af",
     "url": "/effective-lamp/static/js/main.6545ae9b.chunk.js"
   },
   {
